@@ -1,0 +1,16 @@
+name: Test Webhook Trigger
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  send_webhook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Webhook to Flask App
+        run: |
+          curl -X POST http://<YOUR_PUBLIC_FLASK_URL>/webhook \
+          -H "Content-Type: application/json" \
+          -d '{"test":"This is from GitHub Actions"}'
